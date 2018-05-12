@@ -330,6 +330,14 @@ Start CUA rectangle mode by =C-x SPC=.
         ispell-program-name "aspell")
   (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
 #+end_src
+*** flyspell
+#+begin_src emacs-lisp
+(use-package flyspell
+  :hook (org-mode . flyspell-mode)
+  :bind
+  (:map flyspell-mode-map
+        ("C-;" . nil)))
+#+end_src
 ** Emacs Lisp
 #+begin_src emacs-lisp
 (define-key emacs-lisp-mode-map (kbd "C-c k") #'checkdoc-minor-mode)
