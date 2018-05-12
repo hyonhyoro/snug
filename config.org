@@ -277,7 +277,7 @@ With ARG, do this that many times."
 
 (defun hyonhyoro|backward-delete-word (arg)
   "Delete characters backward until encountering the end of a word.
-WITH ARG, do this that many times."
+With ARG, do this that many times."
   (interactive "p")
   (hyonhyoro|delete-word (- arg)))
 
@@ -285,7 +285,7 @@ WITH ARG, do this that many times."
 (global-set-key (kbd "M-h") #'hyonhyoro|backward-delete-word)
 #+end_src
 *** Open Line
-Add two commands lie vi's =o= and =O=.
+Add two commands like vi's =o= and =O=.
 
 #+begin_src emacs-lisp
 (defun hyonhyoro|open-next-line (arg)
