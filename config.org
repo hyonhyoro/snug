@@ -619,6 +619,43 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
   (:map flyspell-mode-map
         ("C-;" . nil)))
 #+end_src
+*** flycheck
+#+begin_src emacs-lisp
+(use-package flycheck :ensure t :after hydra
+  :commands (flycheck-list-errors
+             flycheck-next-error
+             flycheck-previous-error
+             flycheck-first-error
+             flycheck-error-list-set-filter)
+  :bind
+  (:map flycheck-mode-map
+        ("C-c f" . hyonhyoro|hydra-flycheck/body))
+  :config
+  (add-to-list 'display-buffer-alist
+               `(,(rx bos "*Flycheck errors*" eos)
+                 (display-buffer-reuse-window display-buffer-in-side-window)
+                 (side . bottom)
+                 (reusable-frames . visible)
+                 (window-height . 0.2)))
+  (defhydra hyonhyoro|hydra-flycheck
+    (:pre
+     (progn (setq hydra-lv t) (flycheck-list-errors))
+     :post
+     (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
+     :hint nil)
+    "
+   ^Up^       ^Down^      ^Other^
+------------------------------
+[_p_] Next  [_n_] Next  [_f_] Filter
+[_P_] End   [_N_] End   [_q_] Quit
+"
+    ("n" flycheck-next-error)
+    ("p" flycheck-previous-error)
+    ("N" (progn (goto-char (point-max)) (flycheck-previous-error)))
+    ("P" flycheck-first-error)
+    ("f" flycheck-error-list-set-filter)
+    ("q" nil)))
+#+end_src
 ** Git
 *** magit
 #+begin_src emacs-lisp
