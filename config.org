@@ -513,6 +513,12 @@ Read [[https://github.com/Fuco1/smartparens/wiki/Pair-management][Pair managemen
 #+begin_src emacs-lisp
 (use-package wgrep :ensure t :defer t)
 #+end_src
+*** zop-to-char
+#+begin_src emacs-lisp
+(use-package zop-to-char :ensure t
+  :bind
+  ("M-z" . zop-up-to-char))
+#+end_src
 ** Framework
 *** hydra
 #+begin_src emacs-lisp
