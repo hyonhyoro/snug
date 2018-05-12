@@ -339,6 +339,12 @@ See also `newline-and-indent'."
         anzu-search-threshold 1000)
   (setq anzu-use-migemo t))
 #+end_src
+*** comment-dwim-2
+#+begin_src emacs-lisp
+(use-package comment-dwim-2 :ensure t
+  :bind
+  ("M-;" . comment-dwim-2))
+#+end_src
 *** cua-mode
 Start CUA rectangle mode by =C-x SPC=.
 
