@@ -277,6 +277,10 @@ Zerodark Emacs theme.
   :config
   (zerodark-setup-modeline-format))
 #+end_src
+*** all-the-icons
+#+begin_src emacs-lisp
+(use-package all-the-icons :ensure t :defer t)
+#+end_src
 ** Moving Around
 *** Smooth Scroll
 #+begin_src emacs-lisp
