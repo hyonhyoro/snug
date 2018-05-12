@@ -357,6 +357,13 @@ Start CUA rectangle mode by =C-x SPC=.
   (define-key map (kbd "C-x SPC") #'cua-set-rectangle-mark)
   (define-key map (kbd "<C-return>") nil))
 #+end_src
+*** move-text
+#+begin_src emacs-lisp
+(use-package move-text :ensure t
+  :bind
+  (("M-n" . move-text-down)
+   ("M-p" . move-text-up)))
+#+end_src
 *** multiple-cursors
 #+begin_src emacs-lisp
 (use-package multiple-cursors :ensure t :after hydra
