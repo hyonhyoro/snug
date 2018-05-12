@@ -308,6 +308,18 @@ See also `newline-and-indent'."
 (global-set-key (kbd "C-o") #'hyonhyoro|open-next-line)
 (global-set-key (kbd "M-o") #'hyonhyoro|open-previous-line)
 #+end_src
+*** cua-mode
+Start CUA rectangle mode by =C-x SPC=.
+
+#+begin_src emacs-lisp
+(cua-mode 1)
+
+(setq cua-enable-cua-keys nil)
+
+(let ((map cua-global-keymap))
+  (define-key map (kbd "C-x SPC") #'cua-set-rectangle-mark)
+  (define-key map (kbd "<C-return>") nil))
+#+end_src
 * Footer
 # Local Variables:
 # coding: utf-8
