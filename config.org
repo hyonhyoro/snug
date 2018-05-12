@@ -96,8 +96,7 @@ Custom file.
 (setq custom-file (expand-file-name "custom.el" hyonhyoro|cache-dir))
 #+end_src
 
-Backup files.
-Create =*~= files in =cache/backup= directory.
+Backup files. Create =*~= files in =cache/backup= directory.
 
 #+begin_src emacs-lisp :tangle no
 (setq make-backup-files t)
@@ -116,8 +115,7 @@ Create =*~= files in =cache/backup= directory.
   (setq backup-directory-alist `((".*" . ,backup-dir))))
 #+end_src
 
-Auto-save files.
-Create =#*#= files in =cache/auto-save= directory.
+Auto-save files. Create =#*#= files in =cache/auto-save= directory.
 
 #+begin_src emacs-lisp
 (setq auto-save-default t)
@@ -132,8 +130,7 @@ Create =#*#= files in =cache/auto-save= directory.
           (".*" ,auto-save-dir t))))
 #+end_src
 
-Lock files.
-Stop creating =.#*= files.
+Lock files. Stop creating =.#*= files.
 
 #+begin_src emacs-lisp
 (setq create-lockfiles nil)
