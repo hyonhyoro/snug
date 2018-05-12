@@ -248,6 +248,27 @@ Japanese font.
 (set-charset-priority 'ascii 'japanese-jisx0213.2004-1 'japanese-jisx0213-2
                       'latin-jisx0201 'katakana-jisx0201 'iso-8859-1 'cp1252 'unicode)
 #+end_src
+** Layout
+*** Mode Line
+Display line number and column number in the mode line.
+
+#+begin_src emacs-lisp
+(line-number-mode 1)
+(setq line-number-display-limit 10000)
+
+(column-number-mode 1)
+#+end_src
+
+Display the date and time in the mode line.
+
+#+begin_src emacs-lisp
+(use-package time :defer t
+  :init
+  (setq system-time-locale "C")
+  :config
+  (setq display-time-format "%a %m/%d %H:%M")
+  (display-time-mode 1))
+#+end_src
 ** Moving Around
 *** Smooth Scroll
 #+begin_src emacs-lisp
