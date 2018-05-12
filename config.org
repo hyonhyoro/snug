@@ -405,13 +405,14 @@ Start CUA rectangle mode by =C-x SPC=.
   :commands (ivy-mode
              ivy--format-function-generic
              ivy--add-face)
+  :init
+  (ivy-mode 1)
   :bind
   (("M-r" . ivy-resume)
    ("C-M-r" . ivy-resume)
    :map ivy-mode-map
    ("C-c C-e" . ivy-wgrep-change-to-wgrep-mode))
   :config
-  (ivy-mode 1)
   (setq ivy-height 8
         ivy-count-format "(%d/%d) "
         ivy-use-virtual-buffers nil)
@@ -439,11 +440,11 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
 20000000 or over.
 
 #+begin_src emacs-lisp
-(use-package flx :ensure t :defer t)
+(use-package flx :ensure t)
 #+end_src
 *** swiper
 #+begin_src emacs-lisp
-(use-package swiper :ensure t
+(use-package swiper :ensure t :after ivy
   :bind
   (("C-M-s" . swiper-all)
    :map swiper-map
@@ -453,7 +454,7 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
 #+end_src
 *** counsel
 #+begin_src emacs-lisp
-(use-package counsel :ensure t
+(use-package counsel :ensure t :after ivy
   :init
   (setq enable-recursive-minibuffers t)
   :bind
