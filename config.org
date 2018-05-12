@@ -738,6 +738,15 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
         magit-diff-refine-hunk 'all)
   (setq magit-completing-read-function 'ivy-completing-read))
 #+end_src
+*** git-gutter-fringe+
+#+begin_src emacs-lisp
+(use-package git-gutter-fringe+ :ensure t
+  :if (display-graphic-p)
+  :bind
+  ("C-c g g" . git-gutter+-mode)
+  :map git-gutter+-mode-map
+  ("C-c g d" . git-gutter+-show-hunk-inline-at-point))
+#+end_src
 ** Emacs Lisp
 #+begin_src emacs-lisp
 (define-key emacs-lisp-mode-map (kbd "C-c k") #'checkdoc-minor-mode)
