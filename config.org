@@ -747,6 +747,14 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
   :map git-gutter+-mode-map
   ("C-c g d" . git-gutter+-show-hunk-inline-at-point))
 #+end_src
+*** gitconfig-mode
+#+begin_src emacs-lisp
+(use-package gitconfig-mode :ensure t :defer t)
+#+end_src
+*** gitignore-mode
+#+begin_src emacs-lisp
+(use-package gitignore-mode :ensure t :defer t)
+#+end_src
 ** Emacs Lisp
 #+begin_src emacs-lisp
 (define-key emacs-lisp-mode-map (kbd "C-c k") #'checkdoc-minor-mode)
