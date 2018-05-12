@@ -328,7 +328,8 @@ Start CUA rectangle mode by =C-x SPC=.
 *** ivy
 #+begin_src emacs-lisp
 (use-package ivy :ensure t
-  :commands (ivy--format-function-generic
+  :commands (ivy-mode
+             ivy--format-function-generic
              ivy--add-face)
   :bind
   (("M-r" . ivy-resume)
@@ -350,6 +351,43 @@ Start CUA rectangle mode by =C-x SPC=.
      cands
      "\n"))
   (setq ivy-format-function #'hyonhyoro|ivy-format-function-arrow))
+#+end_src
+** Completion
+*** swiper
+#+begin_src emacs-lisp
+(use-package swiper :ensure t
+  :bind
+  (("C-M-s" . swiper-all)
+   :map swiper-map
+   ("M-q" . swiper-query-replace)))
+#+end_src
+*** counsel
+#+begin_src emacs-lisp
+(use-package counsel :ensure t
+  :init
+  (setq enable-recursive-minibuffers t)
+  :bind
+  (("C-s" . counsel-grep-or-swiper)
+   ("C-x C-f" . counsel-find-file)
+   ("C-x C-b" . counsel-imenu)
+   ("C-x C-r" . counsel-recentf)
+   ("M-x" . counsel-M-x)
+   ("M-y" . counsel-yank-pop)
+   ("C-c g f" . counsel-git)
+   ("C-c g j" . counsel-git-grep)
+   :map help-map
+   ("b" . counsel-descbinds)
+   ("f" . counsel-describe-function)
+   ("v" . counsel-describe-variable)
+   ("l" . counsel-find-library)
+   ("i" . counsel-info-lookup-symbol)
+   ("u" . counsel-unicode-char)
+   :map read-expression-map
+   ("C-r" . counsel-minibuffer-history)
+   :map minibuffer-local-shell-command-map
+   ("C-r" . counsel-minibuffer-history))
+  :config
+  (setq counsel-find-file-at-point t))
 #+end_src
 ** Checker
 *** ispell
