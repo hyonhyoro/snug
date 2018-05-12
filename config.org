@@ -78,6 +78,76 @@ Read [[https://github.com/jwiegley/use-package][use-package]].
   (require 'use-package))
 (require 'bind-key)
 #+end_src
+** File Management
+*** Cache File
+Store all temporary files in =cache= directory.
+
+#+begin_src emacs-lisp
+(defconst hyonhyoro|cache-dir
+  (expand-file-name "cache/" user-emacs-directory))
+
+(unless (file-exists-p hyonhyoro|cache-dir)
+  (make-directory hyonhyoro|cache-dir))
+#+end_src
+
+Custom file.
+
+#+begin_src emacs-lisp
+(setq custom-file (expand-file-name "custom.el" hyonhyoro|cache-dir))
+#+end_src
+
+Backup files.
+Create =*~= files in =cache/backup= directory.
+
+#+begin_src emacs-lisp :tangle no
+(setq make-backup-files t)
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
+(setq version-control t)
+(setq kept-new-vi 5
+      kept-old-versions 0)
+(setq backup-by-copying nil)
+(setq delete-old-versions t)
+#+end_src
+
+#+begin_src emacs-lisp
+(let ((backup-dir (expand-file-name "backup/" hyonhyoro|cache-dir)))
+  (setq backup-directory-alist `((".*" . ,backup-dir))))
+#+end_src
+
+Auto-save files.
+Create =#*#= files in =cache/auto-save= directory.
+
+#+begin_src emacs-lisp
+(setq auto-save-default t)
+(setq delete-auto-save-files t)
+(setq auto-save-interval 150
+      auto-save-timeout 15)
+
+(let ((auto-save-dir (expand-file-name "auto-save/" hyonhyoro|cache-dir)))
+  (setq auto-save-list-file-prefix (format ".saves-%s" auto-save-dir))
+  (setq auto-save-file-name-transforms
+        `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" "/tmp/\\2" t)
+          (".*" ,auto-save-dir t))))
+#+end_src
+
+Lock files.
+Stop creating =.#*= files.
+
+#+begin_src emacs-lisp
+(setq create-lockfiles nil)
+#+end_src
+*** Executable File
+Store all executable files in =bin= directory.
+
+#+begin_src emacs-lisp
+(defconst hyonhyoro|bin-dir
+  (expand-file-name "bin/" user-emacs-directory))
+
+(unless (file-exists-p hyonhyoro|bin-dir)
+  (make-directory hyonhyoro|bin-dir))
+#+end_src
 * Footer
 # Local Variables:
 # coding: utf-8
