@@ -509,6 +509,12 @@ Read [[https://github.com/Fuco1/smartparens/wiki/Pair-management][Pair managemen
                    :post-handlers '(("| " "SPC")
                                     ("* |[i]\n[i]" "RET")))))
 #+end_src
+*** undo-tree
+#+begin_src emacs-lisp
+(use-package undo-tree :ensure t :defer t
+  :config
+  (global-undo-tree-mode 1))
+#+end_src
 *** wgrep
 #+begin_src emacs-lisp
 (use-package wgrep :ensure t :defer t)
