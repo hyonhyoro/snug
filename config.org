@@ -254,7 +254,7 @@ Display line number and column number in the mode line.
 
 #+begin_src emacs-lisp
 (line-number-mode 1)
-(setq line-number-display-limit 10000)
+(setq line-number-display-limit-width 10000)
 
 (column-number-mode 1)
 #+end_src
@@ -764,9 +764,9 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
 (use-package git-gutter-fringe+ :ensure t
   :if (display-graphic-p)
   :bind
-  ("C-c g g" . git-gutter+-mode)
-  :map git-gutter+-mode-map
-  ("C-c g d" . git-gutter+-show-hunk-inline-at-point))
+  (("C-c g g" . git-gutter+-mode)
+   :map git-gutter+-mode-map
+   ("C-c g d" . git-gutter+-show-hunk-inline-at-point)))
 #+end_src
 *** gitconfig-mode
 #+begin_src emacs-lisp
