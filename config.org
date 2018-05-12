@@ -320,6 +320,10 @@ Start CUA rectangle mode by =C-x SPC=.
   (define-key map (kbd "C-x SPC") #'cua-set-rectangle-mark)
   (define-key map (kbd "<C-return>") nil))
 #+end_src
+*** wgrep
+#+begin_src emacs-lisp
+(use-package wgrep :ensure t :defer t)
+#+end_src
 ** Framework
 *** ivy
 #+begin_src emacs-lisp
@@ -328,7 +332,9 @@ Start CUA rectangle mode by =C-x SPC=.
              ivy--add-face)
   :bind
   (("M-r" . ivy-resume)
-   ("C-M-r" . ivy-resume))
+   ("C-M-r" . ivy-resume)
+   :map ivy-mode-map
+   ("C-c C-e" . ivy-wgrep-change-to-wgrep-mode))
   :config
   (ivy-mode 1)
   (setq ivy-height 8
