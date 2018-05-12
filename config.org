@@ -320,6 +320,16 @@ Start CUA rectangle mode by =C-x SPC=.
   (define-key map (kbd "C-x SPC") #'cua-set-rectangle-mark)
   (define-key map (kbd "<C-return>") nil))
 #+end_src
+** Checker
+*** ispell
+#+begin_src emacs-lisp
+(use-package ispell :defer t
+  :if (executable-find "aspell")
+  :config
+  (setq ispell-dictionary "english"
+        ispell-program-name "aspell")
+  (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+#+end_src
 ** Emacs Lisp
 #+begin_src emacs-lisp
 (define-key emacs-lisp-mode-map (kbd "C-c k") #'checkdoc-minor-mode)
