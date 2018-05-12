@@ -278,6 +278,30 @@ Japanese font.
     :bind
     ("C-x j" . counsel-rg-migemo)))
 #+end_src
+*** win-switch
+#+begin_src emacs-lisp
+(use-package win-switch :ensure t
+  :bind
+  ("C-x o" . win-switch-dispatch)
+  :config
+  (setq win-switch-window-threshold 1
+        win-switch-idle-time 1.2
+        win-switch-provide-visual-feedback nil
+        win-switch-other-window-first  t)
+  (win-switch-set-keys '("h") 'left)
+  (win-switch-set-keys '("j") 'down)
+  (win-switch-set-keys '("k") 'up)
+  (win-switch-set-keys '("l") 'right)
+  (win-switch-set-keys '("o") 'next-window)
+  (win-switch-set-keys '("p") 'previous-window)
+  (win-switch-set-keys '("H") 'shrink-horizontally)
+  (win-switch-set-keys '("J") 'shrink-vertically)
+  (win-switch-set-keys '("K") 'enlarge-vertically)
+  (win-switch-set-keys '("L") 'enlarge-horizontally)
+  (win-switch-set-keys '("2") 'split-vertically)
+  (win-switch-set-keys '("3") 'split-horizontally)
+  (win-switch-set-keys '("q") 'exit))
+#+end_src
 ** Text Manipulation
 *** Delete Word
 Don't kill. Delete!
