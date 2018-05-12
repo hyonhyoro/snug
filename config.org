@@ -6,6 +6,14 @@
 #+STARTUP:  overview
 
 
+* Configuration
+** StartUp
+Keep your =~/.emacs.d= clean.
+
+#+begin_src emacs-lisp
+(when load-file-name
+  (setq user-emacs-directory (file-name-directory load-file-name)))
+#+end_src
 * Footer
 # Local Variables:
 # coding: utf-8
