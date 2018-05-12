@@ -259,6 +259,55 @@ Japanese font.
       scroll-down-aggressively nil
       scroll-preserve-screen-position 'always)
 #+end_src
+** Text Manipulation
+*** Delete Word
+Don't kill. Delete!
+
+#+begin_src emacs-lisp
+(defun hyonhyoro|delete-word (arg)
+  "Delete characters forward until encountering the end of a word.
+With ARG, do this that many times."
+  (interactive "p")
+  (if (use-region-p)
+      (delete-region (region-beginning) (region-end))
+    (delete-region (point)
+                   (progn
+                     (forward-word arg)
+                     (point)))))
+
+(defun hyonhyoro|backward-delete-word (arg)
+  "Delete characters backward until encountering the end of a word.
+WITH ARG, do this that many times."
+  (interactive "p")
+  (hyonhyoro|delete-word (- arg)))
+
+(global-set-key (kbd "M-d") #'hyonhyoro|delete-word)
+(global-set-key (kbd "M-h") #'hyonhyoro|backward-delete-word)
+#+end_src
+*** Open Line
+Add two commands lie vi's =o= and =O=.
+
+#+begin_src emacs-lisp
+(defun hyonhyoro|open-next-line (arg)
+  "Move to the next line and then open a new one.
+See also `newline-and-indent'."
+  (interactive "p")
+  (end-of-line)
+  (open-line-arg)
+  (forward-line 1)
+  (indent-according-to-mode))
+
+(defun hyonhyoro|open-previous-line (arg)
+  "Open a new line before the current one.
+See also `newline-and-indent'."
+  (interactive "p")
+  (beginning-of-line)
+  (open-line arg)
+  (indent-according-to-mode))
+
+(global-set-key (kbd "C-o") #'hyonhyoro|open-next-line)
+(global-set-key (kbd "M-o") #'hyonhyoro|open-previous-line)
+#+end_src
 * Footer
 # Local Variables:
 # coding: utf-8
