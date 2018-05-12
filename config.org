@@ -688,6 +688,32 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
           ("\\.Z\\'"         "" "uncompress %i")
           ("\\.7z\\'"        "" "7z x %i"))))
 #+end_src
+*** dired-collapse
+#+begin_src emacs-lisp
+(use-package dired-collapse :ensure t :after dired
+  :bind
+  (:map dired-mode-map
+        ("K" . dired-collapse-mode)))
+#+end_src
+*** dired-filter
+#+begin_src emacs-lisp
+(use-package dired-filter :ensure t :after dired)
+#+end_src
+*** dired-narrow
+#+begin_src emacs-lisp
+(use-package dired-narrow :ensure t :after dired
+  :bind
+  (:map dired-mode-map
+        ("C-s" . dired-narrow)))
+#+end_src
+*** dired-subtree
+#+begin_src emacs-lisp
+(use-package dired-subtree :ensure t :after dired
+  :bind
+  (:map dired-mode-map
+        ("i" . dired-subtree-insert)
+        (";" . dired-subtree-remove)))
+#+end_src
 ** Git
 *** magit
 #+begin_src emacs-lisp
