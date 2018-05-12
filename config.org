@@ -356,6 +356,10 @@ Start CUA rectangle mode by =C-x SPC=.
 (use-package wgrep :ensure t :defer t)
 #+end_src
 ** Framework
+*** hydra
+#+begin_src emacs-lisp
+(use-package hydra :ensure t :defer t)
+#+end_src
 *** ivy
 #+begin_src emacs-lisp
 (use-package ivy :ensure t :after flx
