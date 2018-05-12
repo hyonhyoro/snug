@@ -384,7 +384,7 @@ Start CUA rectangle mode by =C-x SPC=.
 
 (let ((map cua-global-keymap))
   (define-key map (kbd "C-x SPC") #'cua-set-rectangle-mark)
-  (define-key map (kbd "<C-return>") nil))
+  (define-key map (kbd "C-<return>") nil))
 #+end_src
 *** move-text
 #+begin_src emacs-lisp
