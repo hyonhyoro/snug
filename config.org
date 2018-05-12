@@ -699,6 +699,18 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
 #+begin_src emacs-lisp
 (use-package dired-filter :ensure t :after dired)
 #+end_src
+*** dired-k
+#+begin_src emacs-lisp
+(use-package dired-k :ensure t :after dired
+  :init
+  (add-hook 'dired-initial-position-hook #'dired-k)
+  (add-hook 'dired-after-readin-hook #'dired-k-no-revert)
+  :bind
+  (:map dired-mode-map
+        ("g" . dired-k))
+  :config
+  (setq dired-k-human-readable t))
+#+end_src
 *** dired-narrow
 #+begin_src emacs-lisp
 (use-package dired-narrow :ensure t :after dired
