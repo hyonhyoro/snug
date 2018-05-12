@@ -293,7 +293,7 @@ Add two commands lie vi's =o= and =O=.
 See also `newline-and-indent'."
   (interactive "p")
   (end-of-line)
-  (open-line-arg)
+  (open-line arg)
   (forward-line 1)
   (indent-according-to-mode))
 
@@ -385,7 +385,7 @@ Org-babel.
       org-src-fontify-natively t
       org-src-tab-acts-natively t
       org-src-strip-leading-and-trailing-blank-lines t
-      org-src-presi nil
+      org-src-preserve-indentation nil
       org-edit-src-content-indentation 0)
 #+end_src
 * Footer
