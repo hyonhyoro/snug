@@ -696,6 +696,13 @@ Org-babel.
       org-src-preserve-indentation nil
       org-edit-src-content-indentation 0)
 #+end_src
+*** org-bullets
+#+begin_src emacs-lisp
+(use-package org-bullets :ensure t
+  :hook (org-mode .org-bullets-mode)
+  :config
+  (setq org-bullets-bullet-list '("✸" "✦" "➤" "✴")))
+#+end_src
 * Footer
 # Local Variables:
 # coding: utf-8
