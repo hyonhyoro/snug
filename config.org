@@ -262,12 +262,10 @@ Display line number and column number in the mode line.
 Display the date and time in the mode line.
 
 #+begin_src emacs-lisp
-(use-package time :defer t
-  :init
-  (setq system-time-locale "C")
-  :config
-  (setq display-time-format "%a %m/%d %H:%M")
-  (display-time-mode 1))
+(setq system-time-locale "C")
+(setq display-time-format "%a %m/%d %H:%M")
+
+(display-time-mode 1)
 #+end_src
 ** Moving Around
 *** Smooth Scroll
