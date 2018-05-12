@@ -358,7 +358,7 @@ Start CUA rectangle mode by =C-x SPC=.
 ** Framework
 *** ivy
 #+begin_src emacs-lisp
-(use-package ivy :ensure t
+(use-package ivy :ensure t :after flx
   :commands (ivy-mode
              ivy--format-function-generic
              ivy--add-face)
@@ -372,6 +372,12 @@ Start CUA rectangle mode by =C-x SPC=.
   (setq ivy-height 8
         ivy-count-format "(%d/%d) "
         ivy-use-virtual-buffers nil)
+  (setq ivy-re-builders-alist
+        '((ivy-switch-buffer . ivy--regex-plus)
+          (swiper . ivy--regex-plus)
+          (swiper-all . ivy--regex-plus)
+          (counsel-find-file . ivy--regex-plus)
+          (t . ivy--regex-fuzzy)))
   (defun hyonhyoro|ivy-format-function-arrow (cands)
     "Transform CANDS into a string for minibuffer."
     (ivy--format-function-generic
@@ -384,6 +390,14 @@ Start CUA rectangle mode by =C-x SPC=.
   (setq ivy-format-function #'hyonhyoro|ivy-format-function-arrow))
 #+end_src
 ** Completion
+*** flx
+Fuzzy matching engine. You should decrease frequency of garbage collection
+to speed up future matching. The author encourages you to keep =gc-cons-threshold=
+20000000 or over.
+
+#+begin_src emacs-lisp
+(use-package flx :ensure t :defer t)
+#+end_src
 *** swiper
 #+begin_src emacs-lisp
 (use-package swiper :ensure t
