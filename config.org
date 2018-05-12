@@ -266,6 +266,18 @@ Japanese font.
   ("C-'" . avy-goto-subword-1)
   ("M-g g" . avy-goto-line))
 #+end_src
+*** avy-migemo
+#+begin_src emacs-lisp
+(use-package avy-migemo :ensure t :after migemo
+  :commands avy-migemo-mode
+  :config
+  (avy-migemo-mode 1)
+  (use-package avy-migemo-e.g.ivy :after ivy)
+  (use-package avy-migemo-e.g.swiper :after swiper)
+  (use-package avy-migemo-e.g.counsel :after counsel
+    :bind
+    ("C-x j" . counsel-rg-migemo)))
+#+end_src
 ** Text Manipulation
 *** Delete Word
 Don't kill. Delete!
@@ -396,6 +408,20 @@ Start CUA rectangle mode by =C-x SPC=.
    ("C-r" . counsel-minibuffer-history))
   :config
   (setq counsel-find-file-at-point t))
+#+end_src
+*** migemo
+#+begin_src emacs-lisp
+(use-package migemo :ensure t
+  :if (executable-find "cmigemo")
+  :commands migemo-init
+  :config
+  (setq migemo-command "cmigemo"
+        migemo-options '("-q" "--emacs")
+        migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict"
+        migemo-coding-system 'utf-8
+        migemo-user-dictionary nil
+        migemo-regex-dictionary nil)
+  (migemo-init))
 #+end_src
 ** Checker
 *** ispell
