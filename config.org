@@ -267,6 +267,16 @@ Display the date and time in the mode line.
 
 (display-time-mode 1)
 #+end_src
+*** Theme
+Zerodark Emacs theme.
+
+#+begin_src emacs-lisp
+(use-package zerodark-theme :ensure t :defer t
+  :init
+  (load-theme 'zerodark t)
+  :config
+  (zerodark-setup-modeline-format))
+#+end_src
 ** Moving Around
 *** Smooth Scroll
 #+begin_src emacs-lisp
