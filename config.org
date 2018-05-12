@@ -148,6 +148,18 @@ Store all executable files in =bin= directory.
 (unless (file-exists-p hyonhyoro|bin-dir)
   (make-directory hyonhyoro|bin-dir))
 #+end_src
+*** Save
+#+begin_src emacs-lisp
+(add-hook 'before-save-hook #'time-stamp)
+#+end_src
+
+#+begin_src emacs-lisp
+(add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
+#+end_src
+
+#+begin_src emacs-lisp
+(setq-default require-final-newline t)
+#+end_src
 * Footer
 # Local Variables:
 # coding: utf-8
