@@ -320,6 +320,31 @@ Start CUA rectangle mode by =C-x SPC=.
   (define-key map (kbd "C-x SPC") #'cua-set-rectangle-mark)
   (define-key map (kbd "<C-return>") nil))
 #+end_src
+** Framework
+*** ivy
+#+begin_src emacs-lisp
+(use-package ivy :ensure t
+  :commands (ivy--format-function-generic
+             ivy--add-face)
+  :bind
+  (("M-r" . ivy-resume)
+   ("C-M-r" . ivy-resume))
+  :config
+  (ivy-mode 1)
+  (setq ivy-height 8
+        ivy-count-format "(%d/%d) "
+        ivy-use-virtual-buffers nil)
+  (defun hyonhyoro|ivy-format-function-arrow (cands)
+    "Transform CANDS into a string for minibuffer."
+    (ivy--format-function-generic
+     (lambda (str)
+       (concat "-> " (ivy--add-face str 'ivy-current-match)))
+     (lambda (str)
+       (concat "   " str))
+     cands
+     "\n"))
+  (setq ivy-format-function #'hyonhyoro|ivy-format-function-arrow))
+#+end_src
 ** Checker
 *** ispell
 #+begin_src emacs-lisp
