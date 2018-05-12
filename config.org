@@ -351,6 +351,11 @@ See also `newline-and-indent'."
 (global-set-key (kbd "C-o") #'hyonhyoro|open-next-line)
 (global-set-key (kbd "M-o") #'hyonhyoro|open-previous-line)
 #+end_src
+*** aggressive-indent
+#+begin_src emacs-lisp
+(use-package aggressive-indent :ensure t
+  :hook (emacs-lisp-mode . aggressive-indent-mode))
+#+end_src
 *** anzu
 #+begin_src emacs-lisp
 (use-package anzu :ensure t
