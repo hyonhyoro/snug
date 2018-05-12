@@ -229,7 +229,7 @@ East Asian ambiguous width.
 English font.
 
 #+begin_src emacs-lisp
-(let ((en-font-spec (font-spec :family "Hack" :size 16)))
+(let ((en-font-spec (font-spec :family "Hack" :size 20)))
   (set-fontset-font nil 'ascii en-font-spec))
 #+end_src
 
