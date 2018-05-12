@@ -327,6 +327,18 @@ See also `newline-and-indent'."
 (global-set-key (kbd "C-o") #'hyonhyoro|open-next-line)
 (global-set-key (kbd "M-o") #'hyonhyoro|open-previous-line)
 #+end_src
+*** anzu
+#+begin_src emacs-lisp
+(use-package anzu :ensure t
+  :bind
+  (("M-q" . anzu-query-replace)
+   ("M-Q" . anzu-query-replace-regexp))
+  :config
+  (global-anzu-mode 1)
+  (setq anzu-deactivate-region t
+        anzu-search-threshold 1000)
+  (setq anzu-use-migemo t))
+#+end_src
 *** cua-mode
 Start CUA rectangle mode by =C-x SPC=.
 
