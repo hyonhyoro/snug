@@ -281,6 +281,14 @@ Zerodark Emacs theme.
 #+begin_src emacs-lisp
 (use-package all-the-icons :ensure t :defer t)
 #+end_src
+*** nlinum
+#+begin_src emacs-lisp
+(use-package nlinum :ensure t
+  :hook (prog-mode . nlinum-mode)
+  :config
+  (setq nlinum-format "%4d "
+        nlinum-highlight-current-line t))
+#+end_src
 ** Moving Around
 *** Smooth Scroll
 #+begin_src emacs-lisp
