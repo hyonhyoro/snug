@@ -324,6 +324,70 @@ Start CUA rectangle mode by =C-x SPC=.
 #+begin_src emacs-lisp
 (define-key emacs-lisp-mode-map (kbd "C-c k") #'checkdoc-minor-mode)
 #+end_src
+** Org
+*** org-mode
+#+begin_src emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\)\\'" . org-mode))
+
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c b") #'org-switchb)
+(global-set-key (kbd "C-c c") #'org-capture)
+
+(setq org-directory "~/org"
+      org-default-notes-file (expand-file-name "refile.org" org-directory)
+      org-startup-folded t
+      org-startup-indented t
+      org-startup-truncated t
+      org-ellipsis "⤸"
+      org-cycle-separator-lines 0
+      org-blank-before-new-entry '((heading)
+                                   (plain-list-item . auto))
+      org-return-follows-link t)
+#+end_src
+
+Org-TODO.
+
+#+begin_src emacs-lisp
+(setq org-todo-keywords '((sequence "❢ TODO(t)" "☛ NEXT(n)" "|" "✔ DONE(d)")
+                          (sequence "⚑ WAITING(w@/!)" "┅ INACTIVE(i@/!)" "|" "✘ CANCELED(c@/!)"))
+      org-use-fast-todo-selection t
+      org-treat-S-cursor-todo-selection-as-state-change nil
+      org-enable-priority-commands nil)
+#+end_src
+
+Org-list.
+
+#+begin_src emacs-lisp
+(setq org-list-demote-modify-bullet '(("+" . "-")
+                                      ("*" . "-")
+                                      ("1." . "-")
+                                      ("1)" . "a)")))
+#+end_src
+
+Org-agenda.
+
+#+begin_src emacs-lisp
+(setq org-agenda-files `(,org-directory))
+#+end_src
+
+Org-archive.
+
+#+begin_src emacs-lisp
+(setq org-archive-mark-done nil
+      org-archive-location "%s_archive::* Archived Tasks")
+#+end_src
+
+Org-babel.
+
+#+begin_src emacs-lisp
+(setq org-src-window-setup 'current-window
+      org-src-fontify-natively t
+      org-src-tab-acts-natively t
+      org-src-strip-leading-and-trailing-blank-lines t
+      org-src-presi nil
+      org-edit-src-content-indentation 0)
+#+end_src
 * Footer
 # Local Variables:
 # coding: utf-8
