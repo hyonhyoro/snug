@@ -351,6 +351,32 @@ Start CUA rectangle mode by =C-x SPC=.
   (define-key map (kbd "C-x SPC") #'cua-set-rectangle-mark)
   (define-key map (kbd "<C-return>") nil))
 #+end_src
+*** multiple-cursors
+#+begin_src emacs-lisp
+(use-package multiple-cursors :ensure t :after hydra
+  :bind
+  ("C-t" . hyonhyoro|hydra-multiple-cursors/body)
+  :config
+  (defhydra hyonhyoro|hydra-multiple-cursors (:hint nil)
+    "
+     ^Up^            ^Down^        ^Other^
+----------------------------------------------
+[_p_]   Next    [_n_]   Next    [_l_] Edit lines
+[_P_]   Skip    [_N_]   Skip    [_a_] Mark all
+[_M-p_] Unmark  [_M-n_] Unmark  [_r_] Mark by regexp
+^ ^             ^ ^             [_q_] Quit
+"
+    ("n" mc/mark-next-like-this)
+    ("p" mc/mark-previous-like-this)
+    ("N" mc/skip-to-next-like-this)
+    ("P" mc/skip-to-previous-like-this)
+    ("M-n" mc/unmark-next-like-this)
+    ("M-p" mc/unmark-previous-like-this)
+    ("l" mc/edit-lines :exit t)
+    ("a" mc/mark-all-like-this :exit t)
+    ("r" mc/mark-all-in-region-regexp :exit t)
+    ("q" nil)))
+#+end_src
 *** wgrep
 #+begin_src emacs-lisp
 (use-package wgrep :ensure t :defer t)
@@ -358,7 +384,7 @@ Start CUA rectangle mode by =C-x SPC=.
 ** Framework
 *** hydra
 #+begin_src emacs-lisp
-(use-package hydra :ensure t :defer t)
+(use-package hydra :ensure t)
 #+end_src
 *** ivy
 #+begin_src emacs-lisp
@@ -409,7 +435,8 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
   (("C-M-s" . swiper-all)
    :map swiper-map
    ("M-q" . swiper-query-replace)
-   ("C-'" . swiper-avy)))
+   ("C-'" . swiper-avy)
+   ("C-t" . swiper-mc)))
 #+end_src
 *** counsel
 #+begin_src emacs-lisp
