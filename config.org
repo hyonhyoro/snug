@@ -419,6 +419,52 @@ Start CUA rectangle mode by =C-x SPC=.
     ("r" mc/mark-all-in-region-regexp :exit t)
     ("q" nil)))
 #+end_src
+*** smartparens
+#+begin_src emacs-lisp
+(use-package smartparens :ensure t
+  :commands sp-local-pair
+  :hook (((emacs-lisp-mode org-mode c-mode c++-mode) . smartparens-mode)
+         ((emacs-lisp-mode org-mode c-mode c++-mode) . show-smartparens-mode))
+  :bind
+  (:map smartparens-mode-map
+        ("C-M-f" . sp-forward-sexp)
+        ("C-M-b" . sp-backward-sexp)
+        ("C-M-d" . sp-down-sexp)
+        ("C-M-a" . sp-backward-down-sexp)
+        ("C-M-u" . sp-backward-up-sexp)
+        ("C-M-e" . sp-up-sexp)
+        ("C-S-d" . sp-beginning-of-sexp)
+        ("C-S-a" . sp-end-of-sexp)
+        ("C-M-n" . sp-next-sexp)
+        ("C-M-p" . sp-previous-sexp)
+        ("M-F" . sp-forward-symbol)
+        ("M-B" . sp-backward-symbol)
+        ("C-M-k" . sp-kill-sexp)
+        ("M-k" . sp-backward-kill-sexp)
+        ("C-k" . sp-kill-hybrid-sexp)
+        ("C-M-w" . sp-copy-sexp)
+        ("C-<right>" . sp-forward-slurp-sexp)
+        ("C-<left>" . sp-forward-barf-sexp)
+        ("C-M-<left>" . sp-backward-slurp-sexp)
+        ("C-M-<right>" . sp-backward-barf-sexp)
+        ("M-s" . sp-splice-sexp)
+        ("C-M-<delete>" . sp-splice-sexp-killing-forward)
+        ("C-M-<backspace>" . sp-splice-sexp-killing-backward)
+        ("C-S-<backspace>" . sp-splice-sexp-killing-around)
+        ("C-M-t" . sp-transpose-sexp)
+        ("C-x C-t" . sp-transpose-hybrid-sexp)
+        ("C-M-SPC" . sp-mark-sexp))
+  :config
+  (require 'smartparens-config)
+  (electric-pair-mode -1)
+  (show-paren-mode -1)
+  (sp-with-modes '(c-mode c++-mode)
+    (sp-local-pair "{" nil
+                   :post-handlers '(("||\n[i]" "RET")))
+    (sp-local-pair "/*" "*/"
+                   :post-handlers '(("| " "SPC")
+                                    ("* |[i]\n[i]" "RET")))))
+#+end_src
 *** wgrep
 #+begin_src emacs-lisp
 (use-package wgrep :ensure t :defer t)
