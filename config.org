@@ -480,6 +480,35 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
   :config
   (setq counsel-find-file-at-point t))
 #+end_src
+*** company
+#+begin_src emacs-lisp
+(use-package company :ensure t
+  :hook (emacs-lisp-mode . company-mode)
+  :bind
+  (:map company-active-map
+   ("C-s" . company-filter-candidates)
+   ("C-n" . company-select-next)
+   ("C-p" . company-select-previous)
+   ("M-n" . nil)
+   ("M-p" . nil)
+   ("C-h" . nil)
+   :map company-search-map
+   ("C-n" . company-select-next)
+   ("C-p" . company-select-previous))
+  :config
+  (setq company-idle-delay 0
+        company-minimum-prefix-length 4
+        company-selection-wrap-around t
+        company-tooltip-limit 7
+        company-tooltip-minimum 5
+        company-tooltip-align-annotations t
+        company-tooltip-flip-when-above t)
+  (setq company-frontends '(company-pseudo-tooltip-unless-just-one-frontend-with-delay
+                            company-preview-common-frontend
+                            company-echo-metadata-frontend))
+  (setq company-transformers '(company-sort-by-backend-importance
+                               company-sort-by-occurrence)))
+#+end_src
 *** migemo
 #+begin_src emacs-lisp
 (use-package migemo :ensure t
