@@ -498,6 +498,18 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
   (:map flyspell-mode-map
         ("C-;" . nil)))
 #+end_src
+** Git
+*** magit
+#+begin_src emacs-lisp
+(use-package magit :ensure t :after ivy
+  :bind
+  (("C-c g s" . magit-status)
+   ("C-c g b" . magit-blame))
+  :config
+  (setq magit-auto-revert-mode nil
+        magit-diff-refine-hunk 'all)
+  (setq magit-completing-read-function 'ivy-completing-read))
+#+end_src
 ** Emacs Lisp
 #+begin_src emacs-lisp
 (define-key emacs-lisp-mode-map (kbd "C-c k") #'checkdoc-minor-mode)
