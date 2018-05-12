@@ -1,0 +1,14 @@
+#+TITLE:    Emacs Configuration
+#+AUTHOR:   Kazuho Sakoda
+#+EMAIL:    hyonhyoro.kazuho@gmail.com
+#+DATE:     2016-09-21
+#+MODIFIED: 2018-05-12
+#+STARTUP:  overview
+
+
+* Footer
+# Local Variables:
+# coding: utf-8
+# indent-tabs-mode: nil
+# time-stamp-pattern: "10/MODIFIED:\\\\?[ \t]+%:y-%02m-%02d\\\\?\n"
+# End:
