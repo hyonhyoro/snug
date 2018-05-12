@@ -54,6 +54,30 @@ Switch some keys by using [[https://ja.osdn.net/projects/yamy/][yamy]] to avoid 
 (keyboard-translate ?\C-h ?\C-?)
 (keyboard-translate ?\C-z ?\C-h)
 #+end_src
+** Package Management
+Add emacs-lisp package repositories.
+
+#+begin_src emacs-lisp
+(require 'package)
+(setq package-enable-at-startup nil)
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")))
+(package-initialize)
+#+end_src
+
+Read [[https://github.com/jwiegley/use-package][use-package]].
+
+#+begin_src emacs-lisp
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+(require 'bind-key)
+#+end_src
 * Footer
 # Local Variables:
 # coding: utf-8
