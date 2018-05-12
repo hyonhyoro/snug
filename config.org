@@ -2,7 +2,7 @@
 #+AUTHOR:   Kazuho Sakoda
 #+EMAIL:    hyonhyoro.kazuho@gmail.com
 #+DATE:     2016-09-21
-#+MODIFIED: 2018-05-12
+#+MODIFIED: 2018-05-13
 #+STARTUP:  overview
 
 
@@ -655,6 +655,38 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
     ("P" flycheck-first-error)
     ("f" flycheck-error-list-set-filter)
     ("q" nil)))
+#+end_src
+** Dired
+*** dired
+#+begin_src emacs-lisp
+(use-package dired
+  :bind
+  (:map dired-mode-map
+        ("r" . wdired-change-to-wdired-mode))
+  :config
+  (require 'dired-x)
+  (setq dired-auto-revert-buffer t)
+  (put 'dired-find-alternate-file 'disabled nil)
+  (setq dired-dwim-target t)
+  (setq dired-recursive-copies 'always
+        dired-recursive-deletes 'top)
+  (setq dired-listing-switches
+        "-AFGhl --group-directories-first --time-style=long-iso")
+  (require 'dired-aux)
+  (require 'dired-async)
+  (setq dired-compress-file-suffixes
+        '(("\\.tar\\.bz2\\'" "" "tar xjf %i")
+          ("\\.tar\\.gz\\'"  "" "tar xzf %i")
+          ("\\.bz2\\'"       "" "bunzip2 %i")
+          ("\\.gz\\'"        "" "gunzip %i")
+          ("\\.xz\\'"        "" "unxz %i")
+          ("\\.tar\\'"       "" "tar xf %i")
+          ("\\.tbz2\\'"      "" "tar xjf %i")
+          ("\\.tgz\\'"       "" "tar xzf %i")
+          ("\\.zip\\'"       "" "unzip %i")
+          ("\\.rar\\'"       "" "unrar x %i")
+          ("\\.Z\\'"         "" "uncompress %i")
+          ("\\.7z\\'"        "" "7z x %i"))))
 #+end_src
 ** Git
 *** magit
