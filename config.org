@@ -420,6 +420,9 @@ Start CUA rectangle mode by =C-x SPC=.
     ("q" nil)))
 #+end_src
 *** smartparens
+Use =sp-pair= for global pair properties and =sp-local-pair= for local ones.
+Read [[https://github.com/Fuco1/smartparens/wiki/Pair-management][Pair management]] and [[https://github.com/Fuco1/smartparens/wiki/Permissions][Premissions]] for details on adding pair rules.
+
 #+begin_src emacs-lisp
 (use-package smartparens :ensure t
   :commands sp-local-pair
