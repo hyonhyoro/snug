@@ -259,6 +259,13 @@ Japanese font.
       scroll-down-aggressively nil
       scroll-preserve-screen-position 'always)
 #+end_src
+*** avy
+#+begin_src emacs-lisp
+(use-package avy :ensure t
+  :bind
+  ("C-'" . avy-goto-subword-1)
+  ("M-g g" . avy-goto-line))
+#+end_src
 ** Text Manipulation
 *** Delete Word
 Don't kill. Delete!
@@ -359,7 +366,8 @@ Start CUA rectangle mode by =C-x SPC=.
   :bind
   (("C-M-s" . swiper-all)
    :map swiper-map
-   ("M-q" . swiper-query-replace)))
+   ("M-q" . swiper-query-replace)
+   ("C-'" . swiper-avy)))
 #+end_src
 *** counsel
 #+begin_src emacs-lisp
