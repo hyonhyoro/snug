@@ -226,7 +226,7 @@ East Asian ambiguous width.
 (set-east-asian-ambiguous-width 2)
 #+end_src
 ** Font
-English and Japanese font.
+English and Japanese fonts.
 
 #+begin_src emacs-lisp
 (let* ((en-font "Hack")
