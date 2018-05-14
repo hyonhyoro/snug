@@ -2,7 +2,7 @@
 #+AUTHOR:   Kazuho Sakoda
 #+EMAIL:    hyonhyoro.kazuho@gmail.com
 #+DATE:     2016-09-21
-#+MODIFIED: 2018-05-13
+#+MODIFIED: 2018-05-15
 #+STARTUP:  overview
 
 
@@ -226,27 +226,18 @@ East Asian ambiguous width.
 (set-east-asian-ambiguous-width 2)
 #+end_src
 ** Font
-English font.
+English and Japanese font.
 
 #+begin_src emacs-lisp
-(let ((en-font-spec (font-spec :family "Hack" :size 20)))
-  (set-fontset-font nil 'ascii en-font-spec))
-#+end_src
-
-Japanese font.
-
-#+begin_src emacs-lisp
-(let ((jp-font-spec (font-spec :family "Migu 1M")))
-  (set-fontset-font nil 'japanese-jisx0213.2004-1 jp-font-spec)
-  (set-fontset-font nil 'japanese-jisx0213-2 jp-font-spec)
-  (set-fontset-font nil 'katakana-jisx0201 jp-font-spec))
-
-(add-to-list 'face-font-rescale-alist '(".*Migu 1M.*" . 1.1))
-#+end_src
-
-#+begin_src emacs-lisp
-(set-charset-priority 'ascii 'japanese-jisx0213.2004-1 'japanese-jisx0213-2
-                      'latin-jisx0201 'katakana-jisx0201 'iso-8859-1 'cp1252 'unicode)
+(let* ((en-font "Hack")
+       (jp-font "Migu 1M")
+       (size 12)
+       (fontset (format "fontset-%s" en-font)))
+  (create-fontset-from-ascii-font
+   (format "%s-%d:weight=normal" en-font size) nil en-font)
+  (set-fontset-font fontset 'unicode jp-font nil 'append)
+  (add-to-list 'default-frame-alist `(font . ,fontset))
+  (add-to-list 'face-font-rescale-alist `(,(format ".*%s.*" jp-font) . 1.1)))
 #+end_src
 ** Layout
 *** Mode Line
