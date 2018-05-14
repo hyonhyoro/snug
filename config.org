@@ -321,6 +321,13 @@ Zerodark Emacs theme.
     :bind
     ("C-x j" . counsel-rg-migemo)))
 #+end_src
+*** beacon
+#+begin_src emacs-lisp
+(use-package beacon :ensure t :defer t
+  :config
+  (beacon-mode 1)
+  (setq beacon-push-mark 35))
+#+end_src
 *** win-switch
 #+begin_src emacs-lisp
 (use-package win-switch :ensure t
