@@ -7,7 +7,7 @@
 
 
 * Configuration
-** StartUp
+** Startup
 Keep your =~/.emacs.d= clean.
 
 #+begin_src emacs-lisp
@@ -239,7 +239,7 @@ English and Japanese fonts.
   (add-to-list 'default-frame-alist `(font . ,fontset))
   (add-to-list 'face-font-rescale-alist `(,(format ".*%s.*" jp-font) . 1.1)))
 #+end_src
-** Layout
+** Window Arrangement
 *** Mode Line
 Display line number and column number in the mode line.
 
