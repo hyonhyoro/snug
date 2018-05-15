@@ -363,28 +363,28 @@ Zerodark Emacs theme.
 ** Text Arrangement
 *** Whitespace
 #+begin_src emacs-lisp
-(use-package whitespace :defer t
-  :init
-  (add-hook 'before-save-hook #'delete-trailing-whitespace)
-  :config
-  (global-whitespace-mode 1)
-  (setq whitespace-line-column 80)
-  (setq whitespace-style '(face trailing tabs spaces space-mark tab-mark))
-  (setq whitespace-space-regexp "\\(\u3000+\\)"
-        whitespace-display-mappings '((space-mark ?\u3000 [?\u25a1] [?_ ?_])
-                                      (tab-mark ?\t [?\u00bb ?\t] [?\\ ?\t])))
-  (set-face-attribute 'whitespace-trailing nil
-                      :foreground "pale green"
-                      :background 'unspecified
-                      :underline t)
-  (set-face-attribute 'whitespace-tab nil
-                      :foreground "sky blue"
-                      :background 'unspecified
-                      :underline t)
-  (set-face-attribute 'whitespace-space nil
-                      :foreground "tomato"
-                      :background 'unspecified
-                      :underline nil))
+(require 'whitespace)
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
+
+(setq whitespace-line-column 80)
+(setq whitespace-style '(face trailing tabs spaces space-mark tab-mark))
+(setq whitespace-space-regexp "\\(\u3000+\\)"
+      whitespace-display-mappings '((space-mark ?\u3000 [?\u25a1] [?_ ?_])
+                                    (tab-mark ?\t [?\u00bb ?\t] [?\\ ?\t])))
+(set-face-attribute 'whitespace-trailing nil
+                    :foreground "pale green"
+                    :background 'unspecified
+                    :underline t)
+(set-face-attribute 'whitespace-tab nil
+                    :foreground "sky blue"
+                    :background 'unspecified
+                    :underline t)
+(set-face-attribute 'whitespace-space nil
+                    :foreground "tomato"
+                    :background 'unspecified
+                    :underline nil)
+
+(global-whitespace-mode 1)
 #+end_src
 ** Text Manipulation
 *** Delete Word
