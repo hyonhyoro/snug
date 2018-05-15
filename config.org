@@ -411,6 +411,12 @@ With ARG, do this that many times."
 (global-set-key (kbd "M-d") #'hyonhyoro|delete-word)
 (global-set-key (kbd "M-h") #'hyonhyoro|backward-delete-word)
 #+end_src
+
+Overwrite the selected region.
+
+#+begin_src emacs-lisp
+(delete-selection-mode 1)
+#+end_src
 *** Open Line
 Add two commands like vi's =o= and =O=.
 
