@@ -328,6 +328,12 @@ Zerodark Emacs theme.
   (beacon-mode 1)
   (setq beacon-push-mark 35))
 #+end_src
+*** eyebrowse
+#+begin_src emacs-lisp
+(use-package eyebrowse :ensure t :defer t
+  :config
+  (eyebrowse-mode 1))
+#+end_src
 *** win-switch
 #+begin_src emacs-lisp
 (use-package win-switch :ensure t
