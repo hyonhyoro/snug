@@ -323,9 +323,11 @@ Zerodark Emacs theme.
 #+end_src
 *** beacon
 #+begin_src emacs-lisp
-(use-package beacon :ensure t :defer t
-  :config
+(use-package beacon :ensure t
+  :commands beacon-mode
+  :init
   (beacon-mode 1)
+  :config
   (setq beacon-push-mark 35))
 #+end_src
 *** eyebrowse
@@ -558,8 +560,9 @@ Read [[https://github.com/Fuco1/smartparens/wiki/Pair-management][Pair managemen
 #+end_src
 *** undo-tree
 #+begin_src emacs-lisp
-(use-package undo-tree :ensure t :defer t
-  :config
+(use-package undo-tree :ensure t
+  :commands global-undo-tree-mode
+  :init
   (global-undo-tree-mode 1))
 #+end_src
 *** wgrep
