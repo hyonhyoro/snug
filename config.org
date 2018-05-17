@@ -587,7 +587,7 @@ Read [[https://github.com/Fuco1/smartparens/wiki/Pair-management][Pair managemen
 ** Framework
 *** hydra
 #+begin_src emacs-lisp
-(use-package hydra :ensure t
+(use-package hydra :ensure t :demand t
   :commands (hydra-default-pre
              hydra-keyboard-quit
              hydra--call-interactively-remap-maybe
