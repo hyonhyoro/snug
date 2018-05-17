@@ -2,7 +2,7 @@
 #+AUTHOR:   Kazuho Sakoda
 #+EMAIL:    hyonhyoro.kazuho@gmail.com
 #+DATE:     2016-09-21
-#+MODIFIED: 2018-05-17
+#+MODIFIED: 2018-05-18
 #+STARTUP:  overview
 
 
@@ -717,6 +717,21 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
         migemo-user-dictionary nil
         migemo-regex-dictionary nil)
   (migemo-init))
+#+end_src
+*** yasnippet
+#+begin_src emacs-lisp
+(use-package yasnippet :ensure t
+  :commands yas-global-mode
+  :init
+  (yas-global-mode 1)
+  :bind
+  (:map yas-minor-mode-map
+        ("C-c s n" . yas-new-snippet)
+        ("C-c s i" . yas-insert-snippet)
+        ("C-c s v" . yas-visit-snippet-file))
+  :config
+  (setq yas-snippet-dirs
+        (expand-file-name "snippets" user-emacs-directory)))
 #+end_src
 ** Checker
 *** ispell
