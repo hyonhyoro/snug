@@ -479,6 +479,14 @@ Start CUA rectangle mode by =C-x SPC=.
   (define-key map (kbd "C-x SPC") #'cua-set-rectangle-mark)
   (define-key map (kbd "C-<return>") nil))
 #+end_src
+*** ediff
+#+begin_src emacs-lisp
+(use-package ediff
+  :commands ediff-setup-windows-plain
+  :config
+  (setq ediff-window-setup-function #'ediff-setup-windows-plain
+        ediff-split-window-function #'split-window-right))
+#+end_src
 *** expand-region
 #+begin_src emacs-lisp
 (use-package expand-region :ensure t
