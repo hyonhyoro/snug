@@ -157,6 +157,10 @@ Store all executable files in =bin= directory.
 #+begin_src emacs-lisp
 (setq-default require-final-newline t)
 #+end_src
+*** Auto Revert
+#+begin_src emacs-lisp
+(global-auto-revert-mode 1)
+#+end_src
 ** Locale
 #+begin_src emacs-lisp
 (set-locale-environment nil)
