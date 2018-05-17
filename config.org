@@ -2,7 +2,7 @@
 #+AUTHOR:   Kazuho Sakoda
 #+EMAIL:    hyonhyoro.kazuho@gmail.com
 #+DATE:     2016-09-21
-#+MODIFIED: 2018-05-15
+#+MODIFIED: 2018-05-17
 #+STARTUP:  overview
 
 
@@ -850,8 +850,8 @@ Fix the conflict with =er/expand-region=.
   (("C-c g s" . magit-status)
    ("C-c g b" . magit-blame))
   :config
-  (setq magit-auto-revert-mode nil
-        magit-diff-refine-hunk 'all)
+  (magit-auto-revert-mode -1)
+  (setq magit-diff-refine-hunk 'all)
   (setq magit-completing-read-function 'ivy-completing-read))
 #+end_src
 *** git-gutter-fringe+
