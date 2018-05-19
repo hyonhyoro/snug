@@ -187,6 +187,18 @@ Store all executable files in =bin= directory.
 #+begin_src emacs-lisp
 (global-auto-revert-mode 1)
 #+end_src
+*** Uniquify
+Like =config.org<snug>= and =config.org<.emacs.d>=.
+
+#+begin_src emacs-lisp
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+#+end_src
+
+Ignore =*scratch*=, =*Messages*=, =*Compile-Log*=, =*Help*= and so on.
+
+#+begin_src emacs-lisp
+(setq uniquify-ignore-buffers-re "*[^*]+*")
+#+end_src
 ** Locale
 #+begin_src emacs-lisp
 (set-locale-environment nil)
