@@ -965,6 +965,13 @@ Fix the conflict with =er/expand-region=.
       org-return-follows-link t)
 #+end_src
 
+Fix the conflict with =avy-goto-subword-1=.
+
+#+begin_src emacs-lisp
+(eval-after-load 'org
+  '(define-key org-mode-map (kbd "C-'") nil))
+#+end_src
+
 Org-TODO.
 
 #+begin_src emacs-lisp
