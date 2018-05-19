@@ -128,7 +128,7 @@ Auto-save files. Create =#*#= files in =cache/auto-save= directory.
       auto-save-timeout 15)
 
 (let ((auto-save-dir (expand-file-name "auto-save/" hyonhyoro|cache-dir)))
-  (setq auto-save-list-file-prefix (format ".saves-%s" auto-save-dir))
+  (setq auto-save-list-file-prefix (expand-file-name ".saves-" auto-save-dir))
   (setq auto-save-file-name-transforms
         `(("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" "/tmp/\\2" t)
           (".*" ,auto-save-dir t))))
