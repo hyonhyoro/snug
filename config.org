@@ -143,6 +143,9 @@ Lock files. Stop creating =.#*= files.
 Recentf file.
 
 #+begin_src emacs-lisp
+(eval-when-compile
+  (require 'recentf))
+
 (with-eval-after-load 'recentf
   (setq recentf-save-file (expand-file-name "recentf" hyonhyoro|cache-dir)
         recentf-max-menu-items 10
@@ -1011,6 +1014,9 @@ Fix the conflict with =er/expand-region=.
 Fix the conflict with =avy-goto-subword-1=.
 
 #+begin_src emacs-lisp
+(eval-when-compile
+  (require 'org))
+
 (with-eval-after-load 'org
   (define-key org-mode-map (kbd "C-'") nil))
 #+end_src
