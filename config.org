@@ -972,8 +972,8 @@ Fix the conflict with =er/expand-region=.
 Fix the conflict with =avy-goto-subword-1=.
 
 #+begin_src emacs-lisp
-(eval-after-load 'org
-  '(define-key org-mode-map (kbd "C-'") nil))
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "C-'") nil))
 #+end_src
 
 Org-TODO.
