@@ -902,6 +902,10 @@ Fix the conflict with =er/expand-region=.
 (use-package mozc :ensure t
   :commands mozc-session-sendkey
   :if (executable-find "mozc_emacs_helper.sh")
+  :bind
+  (("C-x j" . toggle-input-method)
+   :map isearch-mode-map
+   ("C-x j" . toggle-input-method))
   :config
   (setq mozc-helper-program-name "mozc_emacs_helper.sh")
   (advice-add 'mozc-session-execute-command
