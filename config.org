@@ -2,7 +2,7 @@
 #+AUTHOR:   Kazuho Sakoda
 #+EMAIL:    hyonhyoro.kazuho@gmail.com
 #+DATE:     2016-09-21
-#+MODIFIED: 2018-05-18
+#+MODIFIED: 2018-05-19
 #+STARTUP:  overview
 
 
@@ -888,6 +888,44 @@ Fix the conflict with =er/expand-region=.
 *** gitignore-mode
 #+begin_src emacs-lisp
 (use-package gitignore-mode :ensure t :defer t)
+#+end_src
+** IME
+#+begin_src emacs-lisp
+(use-package mozc :ensure t
+  :commands mozc-session-sendkey
+  :if (executable-find "mozc_emacs_helper.sh")
+  :config
+  (setq mozc-helper-program-name "mozc_emacs_helper.sh")
+  (advice-add 'mozc-session-execute-command
+              :after #'(lambda (&rest args)
+                         (when (eq (nth 0 args) 'CreateSession)
+                           (mozc-session-sendkey '(Ctrl Space))))))
+
+(use-package mozc-im :ensure t :after mozc
+  :init
+  (setq default-input-method "japanese-mozc-im")
+  (make-variable-buffer-local 'mozc-im-mode)
+  (add-hook 'mozc-im-activate-hook #'(lambda () (setq mozc-im-mode t)))
+  (add-hook 'mozc-im-deactivate-hook #'(lambda () (setq mozc-im-mode nil))))
+
+(use-package mozc-popup :ensure t :after mozc
+  :config
+  (setq mozc-candidate-style 'popup))
+
+(use-package mozc-cursor-color :after mozc
+  :load-path "site-lisp/"
+  :config
+  (setq mozc-cursor-color-alist
+        '((read-only . "royal blue")
+          (hiragana . "pink")
+          (full-katakana . "green")
+          (half-ascii . "gray")
+          (full-ascii . "gold")
+          (half-katakana . "thistle")))
+  (advice-add 'mozc-cursor-color-update
+              :around #'(lambda (orig-fun &rest args)
+                          (let ((mozc-mode mozc-im-mode))
+                            (apply orig-fun args)))))
 #+end_src
 ** Emacs Lisp
 #+begin_src emacs-lisp
