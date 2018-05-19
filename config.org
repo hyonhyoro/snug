@@ -394,6 +394,11 @@ Zerodark Emacs theme.
 
 (global-whitespace-mode 1)
 #+end_src
+*** rainbow-delimiters
+#+begin_src emacs-lisp
+(use-package rainbow-delimiters :ensure t
+  :hook (emacs-lisp-mode . rainbow-delimiters-mode))
+#+end_src
 ** Text Manipulation
 *** Delete Word
 Don't kill. Delete!
