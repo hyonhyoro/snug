@@ -787,6 +787,16 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
   (setq yas-snippet-dirs
         (expand-file-name "snippets" user-emacs-directory)))
 #+end_src
+*** which-key
+#+begin_src emacs-lisp
+(use-package which-key :ensure t
+  :commands (which-key-mode which-key-setup-side-window-right-bottom)
+  :init
+  (which-key-mode 1)
+  :config
+  (which-key-setup-side-window-right-bottom)
+  (setq which-key-idle-delay 0.8))
+#+end_src
 ** Checker
 *** ispell
 #+begin_src emacs-lisp
