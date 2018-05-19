@@ -78,6 +78,9 @@ Read [[https://github.com/jwiegley/use-package][use-package]].
 (eval-when-compile
   (require 'use-package))
 (require 'bind-key)
+*** paradox
+#+begin_src emacs-lisp
+(use-package paradox :ensure t :defer t)
 #+end_src
 ** File Management
 *** Cache File
