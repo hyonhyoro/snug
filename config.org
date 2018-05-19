@@ -706,8 +706,14 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
 *** counsel
 #+begin_src emacs-lisp
 (use-package counsel :ensure t :after ivy
+  :commands counsel-esh-history
   :init
   (setq enable-recursive-minibuffers t)
+  (eval-when-compile
+    (require 'eshell))
+  (add-hook 'eshell-mode-hook
+            #'(lambda ()
+                (bind-key "M-r" #'counsel-esh-history eshell-mode-map)))
   :bind
   (("C-s" . counsel-grep-or-swiper)
    ("C-x C-f" . counsel-find-file)
@@ -925,6 +931,29 @@ Fix the conflict with =er/expand-region=.
   (:map dired-mode-map
         ("i" . dired-subtree-insert)
         (";" . dired-subtree-remove)))
+#+end_src
+** Eshell
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-c m") #'eshell)
+
+(eval-when-compile
+  (require 'eshell))
+
+(with-eval-after-load 'eshell
+  (setq eshell-glob-case-insensitive t
+        eshell-error-if-no-glob nil))
+
+(autoload #'eshell-smart-initialize "em-smart" nil t)
+(add-hook 'eshell-mode-hook #'eshell-smart-initialize)
+
+(eval-when-compile
+  (require 'em-smart))
+
+(with-eval-after-load 'em-smart
+  (setq eshell-scroll-to-bottom-on-input nil
+        eshell-where-to-jump 'begin
+        eshell-review-quick-commands nil
+        eshell-smart-space-goes-to-end t))
 #+end_src
 ** Git
 *** magit
