@@ -1185,7 +1185,7 @@ Org-babel.
 *** flycheck-rust
 #+begin_src emacs-lisp
 (use-package flycheck-rust :ensure t :after (flycheck rust-mode)
-  :commnands flycheck-rust-setup
+  :commands flycheck-rust-setup
   :init
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 #+end_src
