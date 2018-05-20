@@ -1,0 +1,13 @@
+alias ... cd ../../
+alias .... cd ../../../
+alias c clear
+alias cp cp -v $1
+alias d dired $1
+alias df df -h
+alias ff find-file $1
+alias l ls -A1 $1
+alias ll ls -Ahl $1
+alias mkdir mkdir -pv $1
+alias mv mv -v $1
+alias rm rm -r $1
+alias tree tree --charset=C -NC $1
