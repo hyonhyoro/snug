@@ -54,6 +54,12 @@ Switch some keys by using [[https://ja.osdn.net/projects/yamy/][yamy]] to avoid 
 (keyboard-translate ?\C-h ?\C-?)
 (keyboard-translate ?\C-z ?\C-h)
 #+end_src
+
+Read a character in hexadecimal by pressing =C-q=.
+
+#+begin_src emacs-lisp
+(setq read-quoted-char-radix 16)
+#+end_src
 ** Package Management
 *** Package Repository
 Add emacs-lisp package repositories.
