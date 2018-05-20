@@ -740,7 +740,7 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
 *** company
 #+begin_src emacs-lisp
 (use-package company :ensure t
-  :hook (emacs-lisp-mode . company-mode)
+  :hook ((emacs-lisp-mode racer-mode) . company-mode)
   :bind
   (:map company-active-map
    ("C-s" . company-filter-candidates)
@@ -833,7 +833,7 @@ Fix the conflict with =er/expand-region=.
              flycheck-previous-error
              flycheck-first-error
              flycheck-error-list-set-filter)
-  :hook ((c-mode c++-mode python-mode) . flycheck-mode)
+  :hook ((c-mode c++-mode python-mode rust-mode) . flycheck-mode)
   :bind
   (:map flycheck-mode-map
         ("C-c f" . hyonhyoro|hydra-flycheck/body))
@@ -1161,6 +1161,27 @@ Org-babel.
 
 (dolist (hook '(c-mode-hook c++-mode-hook))
   (add-hook hook #'hyonhyoro|c-mode-init))
+#+end_src
+** Rust
+*** rust-mode
+#+begin_src emacs-lisp
+(use-package rust-mode :ensure t :defer t
+  :config
+  (setq rust-format-on-save t))
+#+end_src
+*** racer
+#+begin_src emacs-lisp
+(use-package racer :ensure t
+  :hook (rust-mode . racer-mode)
+  :init
+  (add-hook 'racer-mode-hook #'eldoc-mode))
+#+end_src
+*** flycheck-rust
+#+begin_src emacs-lisp
+(use-package flycheck-rust :ensure t :after (flycheck rust-mode)
+  :commnands flycheck-rust-setup
+  :init
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 #+end_src
 * Footer
 # Local Variables:
