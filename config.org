@@ -1037,10 +1037,6 @@ Fix the conflict with =er/expand-region=.
                           (let ((mozc-mode mozc-im-mode))
                             (apply orig-fun args)))))
 #+end_src
-** Emacs Lisp
-#+begin_src emacs-lisp
-(define-key emacs-lisp-mode-map (kbd "C-c k") #'checkdoc-minor-mode)
-#+end_src
 ** Org
 *** org-mode
 #+begin_src emacs-lisp
@@ -1171,6 +1167,10 @@ Org-babel.
 
 (dolist (hook '(c-mode-hook c++-mode-hook))
   (add-hook hook #'hyonhyoro|c-mode-init))
+#+end_src
+** Emacs Lisp
+#+begin_src emacs-lisp
+(define-key emacs-lisp-mode-map (kbd "C-c k") #'checkdoc-minor-mode)
 #+end_src
 ** Markdown
 *** markdown-mode
