@@ -382,6 +382,41 @@ Zerodark Emacs theme.
   :config
   (setq beacon-push-mark 35))
 #+end_src
+*** dumb-jump
+Jump to the definition.
+
+#+begin_src emacs-lisp
+(use-package dumb-jump :ensure t :after (hydra ivy)
+  :commands (dumb-jump-go
+             dumb-jump-go-other-window
+             dumb-jump-go-prefer-external
+             dumb-jump-go-prefer-external-other-window
+             dumb-jump-go-prompt
+             dumb-jump-quick-look
+             dumb-jump-back)
+  :bind
+  ("C-c d" . hyonhyoro|hydra-dumb-jump/body)
+  :config
+  ;; Restrict the scope of searching.
+  (setq dumb-jump-default-project "")
+  (setq dumb-jump-selector 'ivy)
+  (defhydra hyonhyoro|hydra-dumb-jump (:hint nil)
+    "
+    ^Go^      ^External^     ^Misc^
+--------------------------------------
+[_j_] Jump   [_e_] Jump   [_i_] Prompt
+[_o_] Other  [_x_] Other  [_l_] Look
+[_b_] Back   ^ ^          [_q_] Quit
+"
+    ("j" dumb-jump-go)
+    ("o" dumb-jump-go-other-window)
+    ("e" dumb-jump-go-prefer-external)
+    ("x" dumb-jump-go-prefer-external-other-window)
+    ("i" dumb-jump-go-prompt)
+    ("l" dumb-jump-quick-look)
+    ("b" dumb-jump-back)
+    ("q" nil)))
+#+end_src
 *** eyebrowse
 #+begin_src emacs-lisp
 (use-package eyebrowse :ensure t :defer t
