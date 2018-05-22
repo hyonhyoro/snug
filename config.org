@@ -445,6 +445,12 @@ The [[https://github.com/Fanael/rainbow-delimiters#global-mode][reason]] why doe
 (use-package rainbow-delimiters :ensure t
   :hook (emacs-lisp-mode . rainbow-delimiters-mode))
 #+end_src
+*** volatile-highlights
+#+begin_src emacs-lisp :tangle no
+(use-package volatile-highlights :ensure t :defer t
+  :config
+  (volatile-highlights-mode 1))
+#+end_src
 ** Text Manipulation
 *** Delete Word
 Don't kill. Delete!
