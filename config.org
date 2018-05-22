@@ -2,7 +2,7 @@
 #+AUTHOR:   Kazuho Sakoda
 #+EMAIL:    hyonhyoro.kazuho@gmail.com
 #+DATE:     2016-09-21
-#+MODIFIED: 2018-05-20
+#+MODIFIED: 2018-05-22
 #+STARTUP:  overview
 
 
@@ -830,7 +830,7 @@ Fix the conflict with =er/expand-region=.
 
 #+begin_src emacs-lisp
 (use-package flyspell
-  :hook (org-mode . flyspell-mode)
+  :hook ((org-mode markdown-mode) . flyspell-mode)
   :bind
   (:map flyspell-mode-map
         ("C-;" . nil)))
@@ -1171,6 +1171,16 @@ Org-babel.
 
 (dolist (hook '(c-mode-hook c++-mode-hook))
   (add-hook hook #'hyonhyoro|c-mode-init))
+#+end_src
+** Markdown
+*** markdown-mode
+#+begin_src emacs-lisp
+(use-package markdown-mode :ensure t
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :config
+  (setq markdown-command "multimarkdown"))
 #+end_src
 ** Rust
 *** rust-mode
