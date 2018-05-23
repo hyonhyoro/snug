@@ -2,7 +2,7 @@
 #+AUTHOR:   Kazuho Sakoda
 #+EMAIL:    hyonhyoro.kazuho@gmail.com
 #+DATE:     2016-09-21
-#+MODIFIED: 2018-05-22
+#+MODIFIED: 2018-05-23
 #+STARTUP:  overview
 
 
@@ -712,7 +712,7 @@ Read [[https://github.com/Fuco1/smartparens/wiki/Pair-management][Pair managemen
   :bind
   (("M-r" . ivy-resume)
    ("C-M-r" . ivy-resume)
-   :map ivy-mode-map
+   :map ivy-occur-grep-mode-map
    ("C-c C-e" . ivy-wgrep-change-to-wgrep-mode))
   :config
   (setq ivy-height 8
