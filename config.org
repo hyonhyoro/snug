@@ -2,7 +2,7 @@
 #+AUTHOR:   Kazuho Sakoda
 #+EMAIL:    hyonhyoro.kazuho@gmail.com
 #+DATE:     2016-09-21
-#+MODIFIED: 2018-05-23
+#+MODIFIED: 2018-05-26
 #+STARTUP:  overview
 
 
@@ -1212,6 +1212,21 @@ Org-babel.
 ** Emacs Lisp
 #+begin_src emacs-lisp
 (define-key emacs-lisp-mode-map (kbd "C-c k") #'checkdoc-minor-mode)
+#+end_src
+** LaTeX
+*** yatex
+#+begin_src emacs-lisp
+(use-package yatex :ensure t
+  :mode ("\\.tex\\'" . yatex-mode)
+  :init
+  (setq YaTeX-inhibit-prefix-letter t)
+  :config
+  (setq YaTeX-kanji-code nil
+        YaTeX-use-LaTeX2e t
+        YaTeX-use-AMS-LaTeX t
+        tex-command "ptex2pdf -u -l -ot '-synctex=1'"
+        bibtex-command "latexmk -e '$latex=q/uplatex %O -synctex=1 %S/' -e '$bibtex=q/upbibtex %O %B/' -e '$biber=q/biber %O --bblencoding=utf8 -u -U --output_safechars %B/' -e '$makeindex=q/upmendex %O -o %D %S/' -e '$dvipdf=q/dvipdfmx %O -o %D %S/' -norc -gg -pdfdvi"
+        makeindex-command "latexmk -e '$latex=q/uplatex %O -synctex=1 %S/' -e '$bibtex=q/upbibtex %O %B/' -e '$biber=q/biber %O --bblencoding=utf8 -u -U --output_safechars %B/' -e '$makeindex=q/upmendex %O -o %D %S/' -e '$dvipdf=q/dvipdfmx %O -o %D %S/' -norc -gg -pdfdvi"))
 #+end_src
 ** Markdown
 *** markdown-mode
