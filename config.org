@@ -2,7 +2,7 @@
 #+AUTHOR:   Kazuho Sakoda
 #+EMAIL:    hyonhyoro.kazuho@gmail.com
 #+DATE:     2016-09-21
-#+MODIFIED: 2018-05-26
+#+MODIFIED: 2018-06-03
 #+STARTUP:  overview
 
 
@@ -324,6 +324,10 @@ Zerodark Emacs theme.
 #+begin_src emacs-lisp
 (use-package all-the-icons :ensure t :defer t)
 #+end_src
+*** delight
+#+begin_src emacs-lisp
+(use-package delight :ensure t :defer t)
+#+end_src
 *** neotree
 #+begin_src emacs-lisp
 (use-package neotree :ensure t :after all-the-icons
@@ -375,7 +379,7 @@ Zerodark Emacs theme.
 #+end_src
 *** beacon
 #+begin_src emacs-lisp
-(use-package beacon :ensure t
+(use-package beacon :ensure t :delight
   :commands beacon-mode
   :init
   (beacon-mode 1)
@@ -452,6 +456,9 @@ Jump to the definition.
 #+begin_src emacs-lisp
 (require 'whitespace)
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
+
+(when (fboundp 'delight)
+  (delight '((global-whitespace-mode nil whitespace))))
 
 (setq whitespace-line-column 80)
 (setq whitespace-style '(face trailing tabs spaces space-mark tab-mark))
@@ -543,7 +550,7 @@ See also `newline-and-indent'."
 #+end_src
 *** aggressive-indent
 #+begin_src emacs-lisp
-(use-package aggressive-indent :ensure t
+(use-package aggressive-indent :ensure t :delight
   :hook (emacs-lisp-mode . aggressive-indent-mode))
 #+end_src
 *** anzu
@@ -627,7 +634,7 @@ Use =sp-pair= for global pair properties and =sp-local-pair= for local ones.
 Read [[https://github.com/Fuco1/smartparens/wiki/Pair-management][Pair management]] and [[https://github.com/Fuco1/smartparens/wiki/Permissions][Premissions]] for details on adding pair rules.
 
 #+begin_src emacs-lisp
-(use-package smartparens :ensure t
+(use-package smartparens :ensure t :delight
   :commands sp-local-pair
   :hook (((emacs-lisp-mode org-mode c-mode c++-mode rust-mode) . smartparens-mode)
          ((emacs-lisp-mode org-mode c-mode c++-mode rust-mode) . show-smartparens-mode))
@@ -676,7 +683,7 @@ Read [[https://github.com/Fuco1/smartparens/wiki/Pair-management][Pair managemen
 #+end_src
 *** undo-tree
 #+begin_src emacs-lisp
-(use-package undo-tree :ensure t
+(use-package undo-tree :ensure t :delight
   :commands global-undo-tree-mode
   :init
   (global-undo-tree-mode 1))
@@ -703,7 +710,7 @@ Read [[https://github.com/Fuco1/smartparens/wiki/Pair-management][Pair managemen
 #+end_src
 *** ivy
 #+begin_src emacs-lisp
-(use-package ivy :ensure t :after flx
+(use-package ivy :ensure t :after flx :delight
   :commands (ivy-mode
              ivy--format-function-generic
              ivy--add-face)
@@ -790,7 +797,7 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
 #+end_src
 *** company
 #+begin_src emacs-lisp
-(use-package company :ensure t
+(use-package company :ensure t :delight
   :hook ((emacs-lisp-mode racer-mode) . company-mode)
   :bind
   (:map company-active-map
@@ -833,7 +840,7 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
 #+end_src
 *** yasnippet
 #+begin_src emacs-lisp
-(use-package yasnippet :ensure t
+(use-package yasnippet :ensure t :delight yas-minor-mode
   :commands yas-global-mode
   :init
   (yas-global-mode 1)
@@ -848,7 +855,7 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
 #+end_src
 *** which-key
 #+begin_src emacs-lisp
-(use-package which-key :ensure t
+(use-package which-key :ensure t :delight
   :commands (which-key-mode which-key-setup-side-window-right-bottom)
   :init
   (which-key-mode 1)
@@ -870,7 +877,7 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
 Fix the conflict with =er/expand-region=.
 
 #+begin_src emacs-lisp
-(use-package flyspell
+(use-package flyspell :delight
   :hook ((org-mode markdown-mode) . flyspell-mode)
   :bind
   (:map flyspell-mode-map
@@ -1118,6 +1125,13 @@ Org-TODO.
       org-use-fast-todo-selection t
       org-treat-S-cursor-todo-selection-as-state-change nil
       org-enable-priority-commands nil)
+#+end_src
+
+Org-indent.
+
+#+begin_src emacs-lisp
+(when (fboundp 'delight)
+  (delight '((org-indent-mode nil org-indent))))
 #+end_src
 
 Org-list.
