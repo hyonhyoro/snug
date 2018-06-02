@@ -430,6 +430,7 @@ Jump to the definition.
 *** win-switch
 #+begin_src emacs-lisp
 (use-package win-switch :ensure t
+  :commands win-switch-set-keys
   :bind
   ("C-x o" . win-switch-dispatch)
   :config
@@ -993,10 +994,10 @@ Fix the conflict with =er/expand-region=.
 #+end_src
 ** Eshell
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-c m") #'eshell)
-
 (eval-when-compile
   (require 'eshell))
+
+(global-set-key (kbd "C-c m") #'eshell)
 
 (with-eval-after-load 'eshell
   (setq eshell-glob-case-insensitive t
