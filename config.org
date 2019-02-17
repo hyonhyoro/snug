@@ -2,7 +2,7 @@
 #+AUTHOR:   Kazuho Sakoda
 #+EMAIL:    hyonhyoro.kazuho@gmail.com
 #+DATE:     2016-09-21
-#+MODIFIED: 2018-06-03
+#+MODIFIED: 2019-02-17
 #+STARTUP:  overview
 
 
@@ -283,10 +283,10 @@ English and Japanese fonts.
 #+begin_src emacs-lisp
 (let* ((en-font "Hack")
        (jp-font "Migu 1M")
-       (size 12)
+       (size 16)
        (fontset (format "fontset-%s" en-font)))
   (create-fontset-from-ascii-font
-   (format "%s-%d:weight=normal" en-font size) nil en-font)
+   (format "%s:size=%d:weight=normal:slant=normal" en-font size) nil en-font)
   (set-fontset-font fontset 'unicode jp-font nil 'append)
   (add-to-list 'default-frame-alist `(font . ,fontset))
   (add-to-list 'face-font-rescale-alist `(,(format ".*%s.*" jp-font) . 1.1)))
