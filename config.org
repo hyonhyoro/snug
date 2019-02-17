@@ -1021,7 +1021,7 @@ Fix the conflict with =er/expand-region=.
 (use-package magit :ensure t :after ivy
   :bind
   (("C-c g s" . magit-status)
-   ("C-c g b" . magit-blame))
+   ("C-c g b" . magit-blame-addition))
   :config
   (magit-auto-revert-mode -1)
   (setq magit-diff-refine-hunk 'all)
