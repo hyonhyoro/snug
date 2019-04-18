@@ -1230,6 +1230,60 @@ Org-babel.
 (define-key emacs-lisp-mode-map (kbd "C-c k") #'checkdoc-minor-mode)
 #+end_src
 ** LaTeX
+*** ox-latex
+#+begin_src emacs-lisp
+(eval-when-compile
+  (require 'ox-latex))
+
+(with-eval-after-load 'ox-latex
+  (setq org-latex-default-class "bxjsarticle"
+        org-latex-pdf-process
+        '("latexmk -gg -pdfdvi %f"))
+  (add-to-list 'org-latex-classes
+               '("bxjsarticle"
+                 "\\documentclass[autodetect-engine,dvipdfmx-if-dvi,11pt,a4paper,ja=standard]{bxjsarticle}
+[NO-DEFAULT-PACKAGES]
+\\usepackage{newtxtext,newtxmath}
+\\usepackage{amsmath}
+\\usepackage{ascmac}
+\\usepackage{graphicx}
+\\usepackage{hyperref}
+\\ifdefined\\kanjiskip
+  \\usepackage{pxjahyper}
+  \\hypersetup{colorlinks=true}
+\\else
+  \\ifdefined\\XeTeXversion
+    \\hypersetup{colorlinks=true}
+  \\else
+    \\ifdefined\\directlua
+      \\hypersetup{pdfencoding=auto,colorlinks=true}
+    \\else
+      \\hypersetup{unicode,colorlinks=true}
+    \\fi
+  \\fi
+\\fi"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  (add-to-list 'org-latex-classes
+               '("beamer"
+                 "\\documentclass[dvipdfmx,11pt,presentation]{beamer}
+[NO-DEFAULT-PACKAGES]
+\\usepackage[T1]{fontenc}
+\\usepackage{newtxtext,newtxmath}
+\\usepackage{amsmath}
+\\usepackage{ascmac}
+\\usepackage{graphicx}
+\\usepackage{hyperref}
+\\usepackage{bxdpx-beamer}
+\\usepackage{pxjahyper}
+\\renewcommand{\\kanjifamilydefault}{\\gtdefault}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%S}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))))
+#+end_src
 *** yatex
 #+begin_src emacs-lisp
 (use-package yatex :ensure t
