@@ -2,7 +2,7 @@
 #+AUTHOR:   Kazuho Sakoda
 #+EMAIL:    hyonhyoro.kazuho@gmail.com
 #+DATE:     2016-09-21
-#+MODIFIED: 2019-04-18
+#+MODIFIED: 2019-04-25
 #+STARTUP:  overview
 
 
@@ -105,7 +105,7 @@ Custom file.
 
 #+begin_src emacs-lisp
 (setq custom-file (expand-file-name "custom.el" hyonhyoro|cache-dir))
-(load custom-file)
+(load custom-file t)
 #+end_src
 
 Backup files. Create =*~= files in =cache/backup= directory.
