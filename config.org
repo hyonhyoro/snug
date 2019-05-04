@@ -792,6 +792,7 @@ to speed up future matching. The author encourages you to keep =gc-cons-threshol
    ("C-x C-r" . counsel-recentf)
    ("M-x" . counsel-M-x)
    ("M-y" . counsel-yank-pop)
+   ("C-c j" . counsel-rg)
    ("C-c g f" . counsel-git)
    ("C-c g j" . counsel-git-grep)
    :map help-map
