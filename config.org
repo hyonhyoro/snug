@@ -2,7 +2,7 @@
 #+AUTHOR:   Kazuho Sakoda
 #+EMAIL:    hyonhyoro.kazuho@gmail.com
 #+DATE:     2016-09-21
-#+MODIFIED: 2019-04-25
+#+MODIFIED: 2019-05-05
 #+STARTUP:  overview
 
 
@@ -454,6 +454,17 @@ Jump to the definition.
   (win-switch-set-keys '("q") 'exit))
 #+end_src
 ** Text Arrangement
+*** Truncate Lines
+Truncate lines in all buffers
+
+#+begin_src emacs-lisp
+(setq-default truncate-lines nil)
+
+(when (fboundp 'delight)
+  (delight '((visual-line-mode nil simple))))
+
+(global-visual-line-mode 1)
+#+end_src
 *** Whitespace
 #+begin_src emacs-lisp
 (require 'whitespace)
