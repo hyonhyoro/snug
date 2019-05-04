@@ -918,9 +918,9 @@ Fix the conflict with =er/expand-region=.
                  (window-height . 0.2)))
   (defhydra hyonhyoro|hydra-flycheck
     (:pre
-     (progn (setq hydra-lv t) (flycheck-list-errors))
+     (progn (setq hydra-hint-display-type 'lv) (flycheck-list-errors))
      :post
-     (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
+     (progn (setq hydra-hint-display-type nil) (quit-windows-on "*Flycheck errors*"))
      :hint nil)
     "
    ^Up^       ^Down^      ^Other^
